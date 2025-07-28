@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="shortcut icon" href="static/logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Login - Estudo Ui/Ux</title>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="particles"></div>
+    
+    <div class="container-login">
+        <div class="lado-esquerdo">
+            <img class="logo" src="static/logo.png" alt="Logo"/>
+            <p class="descricao">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Aspernatur maiores nostrum dicta tenetur officia in inventore aperiam sequi ad fugit officiis vero suscipit cum, dolore nam delectus quae quibusdam veritatis.
+            </p>
+            <a class="link-empresa" href="#" target="_blank" rel="noopener noreferrer">Linkaqq</a>
+        </div>
+        
+        <div class="linha-vertical"></div>
+        
+        <div class="lado-direito">
+            <h2 class="titulo-acesso">Login</h2>
+            <form class="formulario">
+                <input class="campo-input" type="text" placeholder="Código"/>
+                <input class="campo-input" type="password" placeholder="Senha"/>
+                <button class="botao-entrar" type="submit">Entrar</button>
+            </form>
+        </div>
+        
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 50;
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            
+            // Atualizar mouse
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+            
+            // Criar partículas
+            const particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 1;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const delay = Math.random() * 0.2;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.top = `${posY}px`;
+                particle.style.opacity = Math.random() * 0.7 + 0.1;
+                particle.style.transition = `transform ${Math.random() * 0.5 + 0.3}s ease-out`;
+                
+                particlesContainer.appendChild(particle);
+                
+                particles.push({
+                    element: particle,
+                    x: posX,
+                    y: posY,
+                    speed: Math.random() * 0.05 + 0.02,
+                    delay: delay,
+                    angle: Math.random() * Math.PI * 2
+                });
+            }
+            
+            // Animação das partículas
+            function animateParticles() {
+                particles.forEach((particle, index) => {
+                    // Calcular direção para o mouse com atraso baseado no índice
+                    const dx = mouseX - particle.x;
+                    const dy = mouseY - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // Suavizar o movimento
+                    if (distance > 10) {
+                        particle.angle = Math.atan2(dy, dx);
+                        particle.x += Math.cos(particle.angle) * particle.speed * distance * 4;
+                        particle.y += Math.sin(particle.angle) * particle.speed * distance * 4;
+                    }
+                    
+                    // Aplicar transformação com pequena variação para efeito 
+                    const varianceX = Math.cos(Date.now() * 0.001 + index) * 10;
+                    const varianceY = Math.sin(Date.now() * 0.001 + index) * 10;
+                    
+                    particle.element.style.transform = `translate(${particle.x - parseFloat(particle.element.style.left) + varianceX}px, ${particle.y - parseFloat(particle.element.style.top) + varianceY}px)`;
+                });
+                
+                requestAnimationFrame(animateParticles);
+            }
+            
+            animateParticles();
+        });
+    </script>
+</body>
+</html>

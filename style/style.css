@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; 
+    background: url(../static/fundo.jpeg) no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../static/stars.svg);
+    opacity: 0.8;
+    animation: moveStars 60s linear infinite;
+    z-index: -1;
+}
+
+@keyframes moveStars {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 3840px 2160px;
+    }
+}
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2; 
+}
+
+.particle {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5);
+    z-index: 2;
+}
+
+.container-login {
+    position: relative;
+    max-width: 900px;
+    width: 90%;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+    color: white;
+    overflow: hidden;
+    margin: 0; 
+}
+
+@media (min-width: 768px) {
+    .container-login {
+        flex-direction: row;
+        padding: 3rem;
+    }
+}
+
+.lado-esquerdo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 450px;
+}
+
+.logo {
+    width: 180px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+}
+
+.descricao {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.link-empresa {
+    text-decoration: underline;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 400;
+    max-width: max-content;
+    margin-top: 1.5rem;
+    display: inline-block;
+}
+
+.linha-vertical {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .linha-vertical {
+        display: block;
+        width: 2px;
+        background-color: white;
+        border-radius: 9999px;
+        opacity: 0.9;
+        align-self: stretch;
+        margin: 0 1.5rem;
+    }
+}
+
+.lado-direito {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.titulo-acesso {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 350px;
+    width: 100%;
+}
+
+.campo-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 40px;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.campo-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.campo-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7);
+}
+
+.botao-entrar {
+    background: #083b6f;
+    border: none;
+    border-radius: 40px;
+    padding: 0.75rem 2.5rem;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botao-entrar:hover {
+    background: #0b4b8b;
+}
